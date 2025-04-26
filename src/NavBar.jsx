@@ -5,7 +5,7 @@ const NavBar = () => {
         <nav className="flex justify-between navbar bg-base-300 shadow-sm">
             <a href="/" className="flex items-center gap-2 px-5">
                 <img
-                    src="/DevCommunity2.png"
+                    src="/DevCommunity.png"
                     alt="DevCommunity logo"
                     className="h-8 w-auto"
                 />
