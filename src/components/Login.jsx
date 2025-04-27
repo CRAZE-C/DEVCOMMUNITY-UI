@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice.js";
 import { useNavigate } from "react-router";
+import { BASE_URL } from "../utils/constans.js";
+
 
 const Login = () => {
   const [email, setEmail] = useState("dharanraj@gmail.com");
@@ -12,7 +14,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:1010/login", {
+      const res = await axios.post(BASE_URL+"/login", {
         email,
         password
       }, { withCredentials: true });
