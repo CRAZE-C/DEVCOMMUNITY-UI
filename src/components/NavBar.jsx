@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
+    const user = useSelector((store) => store.user);
+    
     return (
         <nav className="flex justify-between navbar bg-base-300 shadow-sm">
             <a href="/" className="flex items-center gap-2 px-5">
@@ -12,8 +15,9 @@ const NavBar = () => {
                 <span className="text-lg font-semibold">DevCommunity</span>
             </a>
 
-            <div className="flex items-center gap-2 pr-5">
-                <div className="dropdown dropdown-end mx-5">
+            {user && (<div className="flex items-center gap-2 pr-4">
+                Welcome, {user.data.firstName}
+                <div className="dropdown dropdown-end ">
                     <div
                         tabIndex={0}
                         role="button"
@@ -21,8 +25,8 @@ const NavBar = () => {
                     >
                         <div className="w-10 rounded-full overflow-hidden">
                             <img
-                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                                 alt="User avatar"
+                                src={user.data.profilePicture}
                             />
                         </div>
                     </div>
@@ -44,7 +48,7 @@ const NavBar = () => {
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div>)}
         </nav>
     );
 };

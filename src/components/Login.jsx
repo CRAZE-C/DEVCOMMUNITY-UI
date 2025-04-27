@@ -1,16 +1,23 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice.js";
+import { useNavigate } from "react-router";
 
 const Login = () => {
   const [email, setEmail] = useState("dharanraj@gmail.com");
   const [password, setPassword] = useState("Dharanraj@123");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       const res = await axios.post("http://localhost:1010/login", {
         email,
         password
-      }, { withCredentials: true })
+      }, { withCredentials: true });
+      dispatch(addUser(res.data));
+      return navigate("/feed");
     }
     catch (err) {
       console.log("ERROR : " + err)
@@ -28,7 +35,7 @@ const Login = () => {
           />
         </figure>
         <div className="card-body w-90 items-center gap-4">
-          <h2 className="card-title">Login</h2>
+          <h1 className="card-title">Login</h1>
           <fieldset className="w-full">
             <legend className="mb-2 text-sm font-medium">Email:</legend>
             <input
@@ -48,7 +55,7 @@ const Login = () => {
             />
           </fieldset>
 
-          <div className="card-actions pt-3 w-20">
+          <div className="card-actions pt-6 w-20">
             <button className="btn btn-primary w-full" onClick={handleLogin}>
               Login
             </button>
