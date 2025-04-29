@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice.js";
 import { useNavigate } from "react-router";
-import { BASE_URL } from "../utils/constans.js";
+import { BASE_URL } from "../utils/constants.js";
 
 
 const Login = () => {
   const [email, setEmail] = useState("dharanraj@gmail.com");
   const [password, setPassword] = useState("Dharanraj@123");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ const Login = () => {
       return navigate("/feed");
     }
     catch (err) {
-      console.log("ERROR : " + err)
+      setError(err?.response?.data);
     }
   }
 
@@ -56,7 +57,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </fieldset>
-
+          <p className="text-red-500">{error}</p>
           <div className="card-actions pt-6 w-20">
             <button className="btn btn-primary w-full" onClick={handleLogin}>
               Login
