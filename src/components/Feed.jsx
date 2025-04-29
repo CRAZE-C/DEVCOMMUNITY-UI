@@ -7,8 +7,8 @@ import UserCard from './UserCard.jsx'
 
 const Feed = () => {
   const feed = useSelector((store) => store.feed)
-  const dispatch = useDispatch();  
-  
+  const dispatch = useDispatch();
+
   const getFeed = async () => {
     try {
       const res = await axios.get(BASE_URL + "/user/feed",
@@ -24,15 +24,15 @@ const Feed = () => {
   useEffect(() => {
     getFeed();
   }, []);
- 
+
   return (
-    
+
     (feed &&
-    <>
-      <div className='flex justify-center mt-15'>
-        <UserCard user={feed[0]}/>
-      </div>
-    </>)
+      <>
+        <div className='flex justify-center mt-15 h-screen'>
+          <UserCard user={feed[0]} />
+        </div>
+      </>)
   )
 }
 
