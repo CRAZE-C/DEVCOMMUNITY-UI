@@ -15,10 +15,9 @@ const UserCard = ({ user }) => {
 
       <div className="absolute bottom-0 w-full h-10 bg-gradient-to-t from-black to-transparent"></div>
 
-      <div className="absolute bottom-15 px-3">
+      <div className="absolute w-full bottom-15 px-3">
         <h2 className="text-2xl font-semibold">{user.firstName + " " + user.lastName} <span className="italic text-sm">{user.age}</span></h2>
-        <p className="p-1 text-sm text-gray-300">{user.about}</p>
-        <p></p>
+        <p className="pr-10 text-sm text-gray-300 line-clamp-3">{user.about === "Add about yourself..."? "" : user.about}</p>
       </div>
 
       <div className="absolute bottom-1 w-full flex justify-around">

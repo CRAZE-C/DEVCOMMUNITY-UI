@@ -104,9 +104,9 @@ export const ProfileEdit = ({ user }) => {
                                     className="w-full px-2 h-8 border border-gray-300 rounded-md text-white bg-white/20 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
                                     <option value="">Select gender</option>
-                                    <option value="male" className="text-black">Male</option>
-                                    <option value="female" className="text-black">Female</option>
-                                    <option value="other" className="text-black">Other</option>
+                                    <option value="Male" className="text-black">Male</option>
+                                    <option value="Female" className="text-black">Female</option>
+                                    <option value="Others" className="text-black">Other</option>
                                 </select>
                             </fieldset>
 
@@ -200,7 +200,7 @@ export const ProfileEdit = ({ user }) => {
                                 />
                             </fieldset>
 
-                            <p className="text-red-500">{error}</p>
+                            <p className="text-red-500 w-[380px] max-w-full line-clamp-3">{error}</p>
 
                             <div className="card-actions pt-2 w-30">
                                 <button className="btn btn-wide" onClick={handleSave}>

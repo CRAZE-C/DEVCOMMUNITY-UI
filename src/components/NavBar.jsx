@@ -23,7 +23,7 @@ const NavBar = () => {
 
     return (
         <nav className="flex justify-between navbar bg-base-300 shadow-sm">
-            <Link to="/" className="flex items-center gap-2 px-5">
+            <Link to="/feed" className="flex items-center gap-2 px-5">
                 <img
                     src="/DevCommunity.png"
                     alt="DevCommunity logo"
@@ -58,7 +58,7 @@ const NavBar = () => {
                             </Link>
                         </li>
                         <li>
-                            <a>Settings</a>
+                            <Link to="/connections">Connections</Link>
                         </li>
                         <li>
                             <a onClick={handleLogout}>Logout</a>
