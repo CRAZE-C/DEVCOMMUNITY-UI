@@ -1,19 +1,30 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BASE_URL } from '../utils/constants.js';
-import { addRequests } from '../utils/requestSlice.js';
+import { addRequest, removeRequest } from '../utils/requestSlice.js';
 
 const Requests = () => {
   const requests = useSelector((store) => store.request);
   const dispatch = useDispatch();
-  console.log(requests);
+  const [toast, setToast] = useState(false);
+
+  const handleRequest = async (status, id) => {
+    try {
+      const res = await axios.post(`${BASE_URL}/request/review/${status}/${id}`, {} ,
+        {withCredentials: true}
+      );
+      dispatch(removeRequest(id));
+    }
+    catch (err) {
+      console.error("ERROR : " + err);
+    }
+  }
 
   const getRequests = async () => {
     try {
-
-      const res = await axios.get(BASE_URL + "/user/request/received", { withCredentials: true });
-      dispatch(addRequests(res.data.receivedRequests));
+      const res = await axios.get(`${BASE_URL}/user/request/received`, { withCredentials: true });
+      dispatch(addRequest(res.data.receivedRequests));
     }
     catch (err) {
       console.error(err);
@@ -29,7 +40,7 @@ const Requests = () => {
       <div className="mt-8 text-4xl font-bold text-center">⟬ Requests ⟭</div>
 
       {requests.length === 0 ? (
-        <h1 className="mt-10 text-xl italic">Yet no request.fromUserIds made...</h1>
+        <h1 className="mt-10 text-xl italic">Yet no request came...</h1>
       ) : (
         <div className="w-full max-w-[1150px] mt-10 bg-base-100 max-h-[65vh] overflow-auto rounded-lg relative">
           <table className="table w-full bg-base-200 text-sm md:text-base rounded-lg">
@@ -82,11 +93,11 @@ const Requests = () => {
                       : request.fromUserId.about}
                   </td>
                   <td className='flex flex-col gap-2 '>
-                    <button className="flex items-center justify-center btn w-full ">
+                    <button className="flex items-center justify-center btn w-full " onClick={() => handleRequest("accepted",request._id)}>
                       Accept
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="size-[1.2em]"><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
                     </button>
-                    <button className="flex items-center justify-center btn w-full ">
+                    <button className="flex items-center justify-center btn w-full " onClick={() => handleRequest("rejected",request._id)}>
                       Reject
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="size-[1.2em] ml-1">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
