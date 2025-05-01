@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-    themes: acid --default, night --prefersdark ;
+    themes: lemonade --default, night --prefersdark ;
     root: ":root";
     include: ;
     exclude: ;
