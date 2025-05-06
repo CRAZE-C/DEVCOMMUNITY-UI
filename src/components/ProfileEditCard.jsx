@@ -81,7 +81,7 @@ export const ProfileEdit = ({ user }) => {
                                 <input
                                     type="text"
                                     value={firstName}
-                                    className="input input-bordered w-full h-8"
+                                    className="w-full px-3 min-h-8 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     onChange={(e) => setFirstName(e.target.value)}
                                 />
                             </fieldset>
@@ -91,7 +91,7 @@ export const ProfileEdit = ({ user }) => {
                                 <input
                                     type="text"
                                     value={lastName}
-                                    className="input input-bordered w-full h-8"
+                                    className="w-full px-3 min-h-8 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     onChange={(e) => setLastName(e.target.value)}
                                 />
                             </fieldset>
@@ -101,7 +101,7 @@ export const ProfileEdit = ({ user }) => {
                                 <select
                                     value={gender}
                                     onChange={(e) => setGender(e.target.value)}
-                                    className="w-full px-2 h-8 border border-gray-300 rounded-md text-white bg-white/20 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-2 h-8 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
                                     <option value="">Select gender</option>
                                     <option value="Male" className="text-black">Male</option>
@@ -145,7 +145,7 @@ export const ProfileEdit = ({ user }) => {
                                             reader.readAsDataURL(file);
                                         }
                                     }}
-                                    className="file-input"
+                                    className="file-input bg-white/20"
                                 />
                                 <label className="label">Max size 1MB</label>
                             </fieldset>

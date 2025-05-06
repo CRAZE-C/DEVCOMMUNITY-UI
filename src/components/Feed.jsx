@@ -25,6 +25,11 @@ const Feed = () => {
     getFeed();
   }, []);
 
+  if (!feed) return;
+
+  if (feed.length <= 0) 
+    return <h1 className='flex justify-center mt-20 font-bold'>Oops no more feed to show...</h1>
+
   return (
 
     (feed &&

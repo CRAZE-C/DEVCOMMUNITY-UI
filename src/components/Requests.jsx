@@ -7,7 +7,6 @@ import { addRequest, removeRequest } from '../utils/requestSlice.js';
 const Requests = () => {
   const requests = useSelector((store) => store.request);
   const dispatch = useDispatch();
-  const [toast, setToast] = useState(false);
 
   const handleRequest = async (status, id) => {
     try {

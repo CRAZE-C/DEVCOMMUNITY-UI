@@ -1,7 +1,23 @@
+import axios from "axios";
 import React from "react";
 import { FaRedoAlt, FaTimes, FaStar, FaHeart, FaPaperPlane } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { BASE_URL } from "../utils/constants.js";
+import { removeFeed } from "../utils/feedSlice.js";
 
 const UserCard = ({ user }) => {
+  const dispatch = useDispatch();
+
+  const handleSendRequest = async (status, id) => {
+    try {
+      const res = await axios.post(`${BASE_URL}/request/${status}/${id}`, {}, { withCredentials: true });
+      dispatch(removeFeed(id));
+    }
+    catch (err) {
+      console.error("ERROR : " + err);
+    }
+  }
+
   return (
     <div className="w-[350px] h-[70vh] bg-base rounded-xl overflow-hidden relative shadow-2xl text-white font-sans">
       <div className="relative w-full h-full">
@@ -17,15 +33,14 @@ const UserCard = ({ user }) => {
 
       <div className="absolute w-full bottom-15 px-3">
         <h2 className="text-2xl font-semibold">{user.firstName + " " + user.lastName} <span className="italic text-sm">{user.age}</span></h2>
-        <p className="pr-10 text-sm text-gray-300 line-clamp-3">{user.about === "Add about yourself..."? "" : user.about}</p>
+        <p className="pr-10 text-sm text-gray-300 line-clamp-3">{user.about === "Add about yourself..." ? "" : user.about}</p>
       </div>
 
       <div className="absolute bottom-1 w-full flex justify-around">
-        <button className="bg-white text-red-500 p-3 rounded-full text-xl shadow-md"><FaTimes /></button>
-        <button className="bg-white text-green-500 p-3 rounded-full text-xl shadow-md"><FaHeart /></button>
+        <button className="bg-white text-red-500 p-3 rounded-full text-xl shadow-md" onClick={() => {handleSendRequest("ignored", user._id)}}><FaTimes /></button>
+        <button className="bg-white text-green-500 p-3 rounded-full text-xl shadow-md" onClick={() => {handleSendRequest("interested", user._id)}}><FaHeart /></button>
       </div>
     </div>
-
   );
 }
 
