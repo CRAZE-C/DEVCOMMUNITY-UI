@@ -34,7 +34,6 @@ const Body = () => {
         <>
             <NavBar />
             <Outlet />
-            <Footer />
         </>
     )
 }

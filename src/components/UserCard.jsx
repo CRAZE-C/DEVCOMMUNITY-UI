@@ -37,8 +37,18 @@ const UserCard = ({ user }) => {
       </div>
 
       <div className="absolute bottom-1 w-full flex justify-around">
-        <button className="bg-white text-red-500 p-3 rounded-full text-xl shadow-md" onClick={() => {handleSendRequest("ignored", user._id)}}><FaTimes /></button>
-        <button className="bg-white text-green-500 p-3 rounded-full text-xl shadow-md" onClick={() => {handleSendRequest("interested", user._id)}}><FaHeart /></button>
+        <button 
+          className="bg-white text-red-500 p-3 cursor-pointer rounded-full text-xl shadow-md transform transition-all duration-300 ease-in-out hover:scale-110 active:scale-95" 
+          onClick={() => {handleSendRequest("ignored", user._id)}}
+        >
+          <FaTimes />
+        </button>
+        <button 
+          className="bg-white text-green-500 p-3 cursor-pointer rounded-full text-xl shadow-md transform transition-all duration-300 ease-in-out hover:scale-110 active:scale-95" 
+          onClick={() => {handleSendRequest("interested", user._id)}}
+        >
+          <FaHeart />
+        </button>
       </div>
     </div>
   );
