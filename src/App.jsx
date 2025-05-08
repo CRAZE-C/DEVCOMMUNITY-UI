@@ -7,6 +7,10 @@ import Feed from "./components/Feed.jsx";
 import Profile from "./components/Profile.jsx";
 import Connections from "./components/Connections.jsx";
 import Requests from "./components/Requests.jsx";
+import axios from "axios";
+import { BASE_URL } from "./utils/constants.js";
+
+// axios.defaults.baseURL = BASE_URL;
 
 function App() {
   return (

@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice.js";
 import { useNavigate } from "react-router";
 import { BASE_URL } from "../utils/constants.js";
 
 const Login = () => {
+  const user = useSelector((store) => store.user);  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -15,6 +16,9 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  if(user)
+    return navigate("/feed");
 
   const handleLogin = async () => {
     try {
@@ -29,6 +33,7 @@ const Login = () => {
       setError(err?.response?.data);
     }
   }
+
 
   const handleSignUp = async () => {
     try {
@@ -55,7 +60,7 @@ const Login = () => {
         <figure className="w-80 max-w-100 flex-shrink-0">
           <img
             src="https://i.pinimg.com/736x/91/77/97/91779771e0c323b769b5468319754d3a.jpg"
-            alt="Login illustration"
+            alt="Login"
             className="h-full w-full object-cover"
           />
         </figure>
