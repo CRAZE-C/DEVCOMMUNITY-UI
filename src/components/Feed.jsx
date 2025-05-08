@@ -34,7 +34,9 @@ const Feed = () => {
 
     (feed &&
       <>
-        <div className='flex justify-center mt-15 h-screen'>
+      <div className='flex justify-center mt-5 text-3xl '>⟬ Your Feed ⟭</div>
+        <div className='flex justify-center mt-10 h-screen'>
+          
           <UserCard user={feed[0]} />
         </div>
       </>)
