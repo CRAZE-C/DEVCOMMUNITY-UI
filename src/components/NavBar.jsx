@@ -8,6 +8,7 @@ import { setTheme } from "../utils/themeSlice.js";
 
 const NavBar = () => {
     const user = useSelector((store) => store.user);
+    console.log('user:', user);
     const { theme } = useSelector((store) => store.theme);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -61,7 +62,7 @@ const NavBar = () => {
 
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content mt-3 w-52 rounded-box bg-base-100 p-2 shadow z-10"
+                        className="menu menu-sm dropdown-content mt-3 w-52 rounded-box bg-base-200 p-2 shadow z-10"
                     >
                         <li>
                             <Link to="/profile" className="justify-between">
